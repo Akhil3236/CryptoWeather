@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+.main{
+   
+   /* position: fixed; */
+   display: flex;
+   justify-content: center;
+   /* border: 1px solid black; */
+}
+.header{
+
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding-inline: 60px;
+    margin-top: 5px;
+    background-color:rgba(255, 254, 254, 0.75);
+
+}
+
+.content{
+
+    display: none;
+
+}
+.dashboard{
+
+    
+
+    padding: 20px;
+
+}
+
+.dashboard:hover{
+
+
+   cursor: pointer;
+
+   .content{
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    /* border: 2px solid; */
+    margin-top: 15px;
+
+
+   }
+}
+
+.content li{
+
+    padding: 10px;
+
+}
+
+.content li:hover{
+    
+
+    background-color: rgb(99, 99, 88);
+
+   
+}
