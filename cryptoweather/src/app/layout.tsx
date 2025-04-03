@@ -38,7 +38,7 @@ export default function RootLayout({
      <ul className="content">
        <li><a href="/weather">Weather </a></li>
        <li><a href="/Crypto">Crypto </a></li>
-       <li><a href="">News Updates</a></li>
+       <li><a href="/news">News Updates</a></li>
      </ul>
 
    </div>
