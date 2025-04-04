@@ -50,8 +50,11 @@ export default function RootLayout({
      <ul className="content">
        <li><a href="/weatherdetails">City details</a></li>
        <li><a href="/cryptodetails">Crypto details</a></li>
+       
      </ul>
    </div>
+   
+
 
 </div>
 

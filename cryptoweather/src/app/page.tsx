@@ -1,7 +1,50 @@
+"use client";
+import { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
+
 
 export default function Home() {
+
+  const [prices, setPrices] = useState<{ btc: number; eth: number }>({ btc: 0, eth: 0 });
+
+  useEffect(() => {
+    const socket = new WebSocket("wss://ws.coincap.io/prices?assets=bitcoin,ethereum,dogecoin,solana,cardano");
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.bitcoin || data.ethereum) {
+        setPrices((prev) => {
+          const btcChange = Math.abs(prev.btc - (data.bitcoin || prev.btc));
+          const ethChange = Math.abs(prev.eth - (data.ethereum || prev.eth));
+
+          if (btcChange > 100) toast(`🚀 BTC price moved: $${data.bitcoin}`);
+          if (ethChange > 10) toast(`🚀 ETH price moved: $${data.ethereum}`);
+
+          return { btc: data.bitcoin || prev.btc, eth: data.ethereum || prev.eth };
+        });
+      }
+    };
+
+
+    const weatherInterval = setInterval(() => {
+      const weatherAlerts = ["Storm Warning", "Heavy Rain", "Clear Skies", "Extreme Heat"];
+      const randomAlert = weatherAlerts[Math.floor(Math.random() * weatherAlerts.length)];
+
+      toast(`⛅ Weather Alert: ${randomAlert}`, { duration: 5000 });
+    }, 15000);
+
+    return () => {
+      socket.close();
+      clearInterval(weatherInterval);
+    };
+  }, []);
+
   return (
    <>
+
+
+    
+
    
 
     
@@ -29,12 +72,23 @@ export default function Home() {
      <ul className="content">
        <li><a href="/weatherdetails">City details</a></li>
        <li><a href="/cryptodetails">Crypto details</a></li>
+      
+
+
      </ul>
    </div>
 
   </div>
 
 </div >
+
+<div className="p-12 m-25 max-w-lg mx-auto text-center bg-red-50 rounded-4xl ">
+      <h1 className="text-2xl font-bold">Live BTC , ETH & otherPrices</h1>
+      <p className="mt-4">BTC: <strong>${prices.btc}</strong></p>
+      <p className="mt-2">ETH: <strong>${prices.eth}</strong></p>
+
+      
+    </div>
 
 <div className="m-25 p-10 border-1 rounded-2xl">
 
@@ -83,6 +137,26 @@ export default function Home() {
     </li>
    </ul>
 
+   <h1 className="font-bold">Real-Time Notifications </h1>
+
+<ul className="list-disc p-2 m-7">
+
+ <li>
+ Establish a WebSocket connection to receive price changes for BTC/ETH.
+
+
+ </li>
+ <li>
+ Display notifications (toast or dropdown) for significant price shifts or simulated weather alerts.
+
+
+ </li>
+ <li>
+
+ Shows the live prices of the some crypto
+
+ </li>
+</ul>
 </div>
    </>
   );
