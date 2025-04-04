@@ -8,7 +8,7 @@ export default function Home() {
   const [prices, setPrices] = useState<{ btc: number; eth: number }>({ btc: 0, eth: 0 });
 
   useEffect(() => {
-    const socket = new WebSocket("wss://ws.coincap.io/prices?assets=bitcoin,ethereum,dogecoin,solana,cardano");
+    const socket = new WebSocket("wss://ws.coincap.io/prices?assets=bitcoin,ethereum");
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
