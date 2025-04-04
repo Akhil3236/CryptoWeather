@@ -9,7 +9,7 @@ type WeatherData = {
   name: string;
   country: string;
   temp: number;
-  humidity:String;
+  humidity:number;
   description: string;
 };
 
@@ -23,7 +23,7 @@ export default function WeatherApp() {
     fetchWeatherForCities(defaultCities);
   }, []);
 
-  async function fetchWeather(city: string): Promise<WeatherData | null> {
+  async function fetchWeather(city: string): Promise< WeatherData | null> {
     try {
       const res = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`

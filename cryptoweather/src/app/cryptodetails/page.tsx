@@ -37,6 +37,7 @@ export default function CryptoHistory() {
       console.log(historyData);
       
       if (historyData.data) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const formattedHistory = historyData.data.slice(-20).map((entry: any) => ({
           date: new Date(entry.time).toISOString().split("T")[0], 
           price: parseFloat(entry.priceUsd),

@@ -4,20 +4,23 @@ import { useState, useEffect } from "react";
 const popularCryptos = ["bitcoin", "ethereum", "dogecoin", "cardano"];
 
 export default function CryptoPrices() {
-  const [prices, setPrices] = useState<{ [key: string]: any }>({});
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [prices, setPrices] = useState<{ [key: string]:any }>({});
 
   const fetchPrices = async () => {
 
     try {
-      const ids = popularCryptos.join(",");
+      // const ids = popularCryptos.join(",");
       const res = await fetch(`https://api.coincap.io/v2/assets`);
       const data = await res.json();
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const filteredData = data.data.filter((coin: any) =>
         popularCryptos.includes(coin.id)
       );
 
       setPrices(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         filteredData.reduce((acc: any, coin: any) => {
           acc[coin.id] = coin;
           return acc;

@@ -127,7 +127,7 @@ export default function Home() {
 
     </li>
     <li>
-    View the past 5 days' weather history to analyze trends.
+    View the past 5 days weather history to analyze trends.
 
     </li>
     <li>

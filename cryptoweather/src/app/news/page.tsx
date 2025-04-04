@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 
 export default function CryptoNews() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [news, setNews] = useState<any[]>([]);
   const API_KEY = process.env.NEXT_PUBLIC_NEWSDATA_API_KEY;
 

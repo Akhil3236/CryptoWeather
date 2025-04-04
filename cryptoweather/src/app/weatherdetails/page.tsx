@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function WeatherHistory() {
   const [city, setCity] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [weatherData, setWeatherData] = useState<any[]>([]);
   const [error, setError] = useState("");
 
