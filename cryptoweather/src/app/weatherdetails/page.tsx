@@ -29,7 +29,7 @@ export default function WeatherHistory() {
         return;
       }
 
-  
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const filteredData = data.list.filter((_: any, index: number) => index % 4 === 0).map((entry: any) => ({
         date: entry.dt_txt.split(" ")[0],
         temp: entry.main.temp,

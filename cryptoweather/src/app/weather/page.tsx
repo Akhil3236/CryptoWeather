@@ -19,9 +19,7 @@ export default function WeatherApp() {
   const [loading, setLoading] = useState(false);
 
   // Fetch weather for default cities on load
-  useEffect(() => {
-    fetchWeatherForCities(defaultCities);
-  }, []);
+ 
 
   async function fetchWeather(city: string): Promise< WeatherData | null> {
     try {
@@ -44,13 +42,17 @@ export default function WeatherApp() {
     }
   }
 
-  async function fetchWeatherForCities(cities: string[]) {
-    setLoading(true);
-    const weatherResults = await Promise.all(cities.map(fetchWeather));
-    setWeatherData(weatherResults.filter((data) => data !== null) as WeatherData[]);
-    setLoading(false);
-  }
-
+  useEffect(() => {
+    fetchWeatherForCities(defaultCities);
+    
+    async function fetchWeatherForCities(cities: string[]) {
+      setLoading(true);
+      const weatherResults = await Promise.all(cities.map(fetchWeather));
+      setWeatherData(weatherResults.filter((data) => data !== null) as WeatherData[]);
+      setLoading(false);
+    }
+    
+  }, []);
   async function handleSearch() {
     if (!searchCity) return;
     setLoading(true);

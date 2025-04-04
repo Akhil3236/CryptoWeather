@@ -6,6 +6,7 @@ export default function CryptoNews() {
   const [news, setNews] = useState<any[]>([]);
   const API_KEY = process.env.NEXT_PUBLIC_NEWSDATA_API_KEY;
 
+  useEffect(() => {
 
   const fetchNews = async () => {
     try {
@@ -20,11 +21,11 @@ export default function CryptoNews() {
   };
 
   
-  useEffect(() => {
     fetchNews();
     const interval = setInterval(fetchNews, 600000);
 
     return () => clearInterval(interval);
+
   }, []);
 
   return (
